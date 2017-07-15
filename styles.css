@@ -26,6 +26,7 @@ nav li {
     box-shadow: 5px 1px 1px 1px;
     text-align: center;
     background-color: beige;
+    border-radius: 5px;
 }
 
 nav li a {
