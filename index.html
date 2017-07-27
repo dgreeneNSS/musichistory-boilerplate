@@ -16,16 +16,26 @@
         <nav>
             <ul>
                 <li><a href="#">Home Page</a></li>
-                <li><a href="#">Artists</a></li>
-                <li><a href="#">Albums</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <nav id="theNav">
+            <ul>
+                <li><a href="#" onclick="HideNM()">List Music</a></li>
+                <li><a href="#" onclick="HideSL()">Add Music</a></li>
             </ul>
         </nav>
         <div id="songList">
             <h2>Great Songs to check out!</h2>
             <ul>
             </ul>
+        </div>
+        <div id="addMusicView">
+            <input id="artistsI">Artist<br>
+            <input id="songI">Song<br>
+            <input id="albumI">Album<br>
+            <button id="add" onclick="AddSongs()">Add</button>
         </div>
         <div class="artists">
             <section class="one">
