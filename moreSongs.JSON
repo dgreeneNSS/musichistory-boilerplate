@@ -1,0 +1,24 @@
+{
+  "songs": [
+    {
+      "Artist": "Stevie Wonder",
+      "Album": "The Definitive Collection",
+      "Song": "Superstition"
+    },
+    {
+      "Artist": "Eminem",
+      "Album": "MMLP2",
+      "Song": "Rap God"
+    },
+    {
+      "Artist": "Clipping",
+      "Album": "Splendor and Misery",
+      "Song": "Air Em Out"
+    },
+    {
+      "Artist": "The Beastie Boys",
+      "Album": "The Sounds of Silence",
+      "Song": "Intergalactic"
+    }
+  ]
+}

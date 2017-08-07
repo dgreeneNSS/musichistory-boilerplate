@@ -55,34 +55,84 @@ for (i = 0; i < songs.length; i++){
 
 
 function AddSongs() {
-    console.log('hello');
-    var p = document.getElementById('songList');
+    //push in new song
     songs.push(document.getElementById('songI').value + ' by ' + document.getElementById('artistsI').value + ' on the album ' + document.getElementById('albumI').value);
+    console.log('pushed in');
+    
+    //create song list variable
+    var songList = document.getElementById('songList');
+    
     console.log('songs', songs);
-    songs.forEach(function(item){
-    document.getElementById("songList").innerHTML += `<li>${item}</li>`
-})
+    songList.innerHTML += `<li>${songs[i]} <button class='deltButton' onclick="delt(event)">delete</button></li>`
+
 
 };
 
 
 songs.forEach(function(item){
-    document.getElementById("songList").innerHTML += `<li>${item}</li>`
+    document.getElementById("songList").innerHTML += `<li>${item} <button class='deltButton' onclick="delt(event)">delete</button></li>`;
 });
 
 
+var XMLSongs = new XMLHttpRequest();
+var placeToGo = document.getElementById('songList');
+XMLSongs.addEventListener('load', function(){
+    this.readyState == 4 && this.status == 200;
+    
+    console.log(XMLSongs.responseText);
+    
+    result = JSON.parse(XMLSongs.responseText).songs;
+    
+    console.log('result', result);
+    for (var i = 0; i < result.length; i++){
+        var listItem = document.createElement('li');
+        listItem.innerHTML += result[i].Song + ' by ' + result[i].Artist + ' on the album ' + result[i].Album + `<button class='deltButton' onclick="delt1(event)">delete</button>`;
+        placeToGo.appendChild(listItem);
+}});
+XMLSongs.open("GET", "songs.JSON", true);
+XMLSongs.send();
 
 
+var r = document.getElementsByClassName('deltButton');
+for (var j = 0; j < r.length; j++){
+    console.log('r', r);
+//    console.log('hi');
+    r[j].addEventListener('click', delt);
+};
 
+function delt(event){
+    console.log('hi');
+    var f = document.getElementById('songList');
+    console.log('f', f.childNodes);
+//    console.log(event.target.parentNode);
+    f.removeChild(event.target.parentNode);
+};
+function delt1(event){
+    console.log('event.target', event.target);
+    var o = document.getElementById('songList');
+//    console.log('f', f.childNodes);
+//    console.log(event.target.parentNode);
+    o.removeChild(event.target.parentNode);
+};
 
+function addMore(){
+    var More = new XMLHttpRequest();
+    var shootIn = document.getElementById('songList');
+        this.readyState == 4 && this.status == 200;
 
+        console.log(More.responseText);
 
+        complete = JSON.parse(XMLSongs.responseText).songs;
 
-
-
-
-
-
+        console.log('complete', complete);
+        for (var i = 0; i < complete.length; i++){
+            var moreItems = document.createElement('li');
+            moreItems.innerHTML += result[i].Song + ' by ' + result[i].Artist + ' on the album ' + result[i].Album + `<button class='deltButton' onclick="delt1(event)">delete</button>`;
+            placeToGo.appendChild(moreItems);
+    };
+    XMLSongs.open("GET", "moreSongs.JSON", true);
+    XMLSongs.send();
+}
 
 
 

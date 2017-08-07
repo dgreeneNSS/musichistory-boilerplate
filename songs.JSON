@@ -1,0 +1,24 @@
+{
+  "songs": [
+    {
+      "Artist": "Bruno Mars",
+      "Album": "24K Magic",
+      "Song": "24K Magic"
+    },
+    {
+      "Artist": "DMX",
+      "Album": "The Best of DMX",
+      "Song": "X GONNA Give it to Ya"
+    },
+    {
+      "Artist": "Queen",
+      "Album": "Best of Queen",
+      "Song": "We Will Rock You"
+    },
+    {
+      "Artist": "Danny Brown",
+      "Album": "Old",
+      "Song": "Smokin and Drinkin"
+    }
+  ]
+}
