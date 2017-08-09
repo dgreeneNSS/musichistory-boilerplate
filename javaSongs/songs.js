@@ -51,7 +51,7 @@ songs.forEach(function(item){
 });
 
 //LOAD IN FIRST JSON
-var XMLSongs = new XMLHttpRequest();
+var XMLSongs = $.getJSON("songs.JSON");
 var placeToGo = $('#songList');
 XMLSongs.onload = () => {
     this.readyState == 4 && this.status == 200;
@@ -63,8 +63,6 @@ XMLSongs.onload = () => {
             element.append(listItem);
         });
 }};
-XMLSongs.open("GET", "songs.JSON", true);
-XMLSongs.send();
 
 //CREATING DELETE BUTTON
 var r = $('.deltButton');
@@ -81,18 +79,18 @@ function delt(event){
 
 //LOAD SONGS FROM MORE BUTTON
 function addMore(){
-    var More = new XMLHttpRequest();
+//    $.getJSON("moreSongs.JSON")
+    var More = $.getJSON("moreSongs.JSON")
     var shootIn = $('#songList');
         this.readyState == 4 && this.status == 200;
         complete = JSON.parse(XMLSongs.responseText).songs;
         console.log('complete', complete);
         for (var i = 0; i < complete.length; i++){
             var moreItems = document.createElement('li');
-            $(moreItems).html(result[i].Song + ' by ' + result[i].Artist + ' on the album ' + result[i].Album + `<button class='deltButton' onclick="delt(event)">delete</button>`);
+            $(moreItems).html(complete[i].Song + ' by ' + complete[i].Artist + ' on the album ' + complete[i].Album + `<button class='deltButton' onclick="delt(event)">delete</button>`);
             placeToGo.each(function(index, element){
             element.appendChild(moreItems);
             })
     };
-    XMLSongs.open("GET", "moreSongs.JSON", true);
-    XMLSongs.send();
+
 };
