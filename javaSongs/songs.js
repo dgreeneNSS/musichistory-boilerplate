@@ -1,6 +1,4 @@
-//Implement jQuery in your Music History code. Every innerHTML, getElementById, getElementByClassName, event listener and XHR request. Convert 'em all.
-
-
+//LOAD IN CREATE NEW SONG PAGE AND HIDE SONG LIST
 $('#HideSL').on("click",function(){
     $("#addMusicView").css("display", "block");
     $("#songList").css("display", "none");
@@ -13,12 +11,8 @@ $('#HideNM').on("click",function(){
 //    console.log('hello');
 });
 
-
-
-
-
+//CREATE ORIGNAL SONGS FROM ARRAY
 var songs = [];
-
         songs[songs.length] = "Element - by Kendrick Lamar on the album Damn";
         songs[songs.length] = "Legs > by Z*ZTop on the album Eliminator";
         songs[songs.length] = "The Logical Song > by Supertr@amp on the album Breakfast in America";
@@ -44,96 +38,61 @@ for (i = 0; i < songs.length; i++){
     }
 }
 
-
+//ADDING IN NEW SONGS FROM INPUT
 function AddSongs() {
-    //push in new song
     var listItem = document.createElement('li');
-//        console.log('li', listItem);
         $(listItem).html($('#songI').val() + ' by ' + $('#artistsI').val() + ' on the album ' + $('#albumI').val() + `<button onclick="delt(event)">delete</button>`);
     $('#songList').append(listItem)
-    //create song list variable
-//    var songList = $('#songList');
-//    
-//    console.log('songs', songs);
-//    songList.append(`<li>${songs[i]} <button onclick="delt(event)">delete</button></li>`)
-//
-
 };
 
+//LOADING IN ORIGINAL SONGS
+songs.forEach(function(item){
+    $('#songList').append(`<li>${item} <button onclick="delt(event)">delete</button></li>`);
+});
 
-
-//console.log($("#songList"));
-//$('#songList').html(`<li> <button class="deltButton" onclick="delt(event)">delete</button></li>`);
-//$("#songList").each(function (index, element){
-    songs.forEach(function(item){
-//    console.log('item', item);
-//        console.log(element);
-        $('#songList').append(`<li>${item} <button onclick="delt(event)">delete</button></li>`);
-//        $(element).html(`<li>${item} <button class="deltButton" onclick="delt(event)">delete</button></li>`)
-    });
-//});
-
+//LOAD IN FIRST JSON
 var XMLSongs = new XMLHttpRequest();
 var placeToGo = $('#songList');
 XMLSongs.onload = () => {
     this.readyState == 4 && this.status == 200;
-    
-//    console.log(XMLSongs.responseText);
-    
     result = JSON.parse(XMLSongs.responseText).songs;
-    
-//    console.log('result', result);
     for (var i = 0; i < result.length; i++){
         var listItem = document.createElement('li');
-//        console.log('li', listItem);
         $(listItem).html(result[i].Song + ' by ' + result[i].Artist + ' on the album ' + result[i].Album + `<button onclick="delt(event)">delete</button>`);
-//        console.log(placeToGo);
         placeToGo.each(function(index, element){
             element.append(listItem);
         });
 }};
-    
 XMLSongs.open("GET", "songs.JSON", true);
 XMLSongs.send();
 
-
+//CREATING DELETE BUTTON
 var r = $('.deltButton');
 for (var j = 0; j < r.length; j++){
-//    console.log('r', r);
-//    console.log('hi');
     r[j].click(delt);
 };
 
 function delt(event){
     var f = $('#songList');
     f.each(function(arrayIndex, currentElement){
-//        console.log('current', currentElement);
         currentElement.removeChild(event.currentTarget.parentNode);
     });
 };
 
-
+//LOAD SONGS FROM MORE BUTTON
 function addMore(){
     var More = new XMLHttpRequest();
     var shootIn = $('#songList');
         this.readyState == 4 && this.status == 200;
-
-//        console.log(More.responseText);
-
         complete = JSON.parse(XMLSongs.responseText).songs;
-
         console.log('complete', complete);
         for (var i = 0; i < complete.length; i++){
             var moreItems = document.createElement('li');
-            $(moreItems).html(result[i].Song + ' by ' + result[i].Artist + ' on the album ' + result[i].Album + `<button class='deltButton' onclick="delt1(event)">delete</button>`);
+            $(moreItems).html(result[i].Song + ' by ' + result[i].Artist + ' on the album ' + result[i].Album + `<button class='deltButton' onclick="delt(event)">delete</button>`);
             placeToGo.each(function(index, element){
             element.appendChild(moreItems);
-})
+            })
     };
     XMLSongs.open("GET", "moreSongs.JSON", true);
     XMLSongs.send();
-}
-
-
-
-
+};
